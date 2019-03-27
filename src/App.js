@@ -8,15 +8,16 @@ class App extends Component {
     super(props);
     this.state = {
       mood: "",
-      data: [
+      data: 
         {
           date: "",
           mood: "",
           message: ""
-        }]
+        }
     }
     this.handleMood = this.handleMood.bind(this);
-    this.showMessage = this.showMessage.bind(this)
+    this.showMessage = this.showMessage.bind(this);
+    this.handleChangeInput = this.handleChangeInput.bind(this);
   }
 
   handleMood(e) {
@@ -34,17 +35,23 @@ class App extends Component {
     return moodSelected;
   }
 
-  
-  sendData() {
-    
-
+  handleChangeInput(e) {
+    const { value, name } = e.target;
+    this.setState ((prevState) => {
+      return {
+        data: {
+          ...prevState.data,
+          [name]: value
+        }
+      }
+    })
   }
 
   render() {
 
     return (
       <div className="App">
-        <Edit handleMood={this.handleMood} showMessage={this.showMessage} sendData={this.sendData} />
+        <Edit handleMood={this.handleMood} showMessage={this.showMessage} sendData={this.sendData} handleChangeInput={this.handleChangeInput}/>
       </div>
     );
   }
