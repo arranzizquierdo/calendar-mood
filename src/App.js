@@ -18,6 +18,7 @@ class App extends Component {
     this.handleMood = this.handleMood.bind(this);
     this.showMessage = this.showMessage.bind(this);
     this.handleChangeInput = this.handleChangeInput.bind(this);
+    this.getSaveData = this.getSaveData.bind(this);
   }
 
   handleMood(e) {
@@ -47,11 +48,21 @@ class App extends Component {
     })
   }
 
+  getSaveData() {
+    const { data } = this.state;
+    localStorage.setItem('data', JSON.stringify(data))
+  }
+
   render() {
 
     return (
       <div className="App">
-        <Edit handleMood={this.handleMood} showMessage={this.showMessage} sendData={this.sendData} handleChangeInput={this.handleChangeInput}/>
+        <Edit 
+          handleMood={this.handleMood} 
+          showMessage={this.showMessage} 
+          handleChangeInput={this.handleChangeInput}
+          getSaveData={this.getSaveData}
+          />
       </div>
     );
   }

@@ -14,7 +14,12 @@ class Edit extends Component {
         return date;
     }
     render() { 
-        const { handleMood, showMessage, sendData, handleChangeInput } = this.props;
+        const { 
+            handleMood, 
+            showMessage, 
+            handleChangeInput,
+            getSaveData 
+        } = this.props;
         return ( 
             <div className="edit-container">
             <form action="calendarMood">
@@ -31,7 +36,7 @@ class Edit extends Component {
                 <label htmlFor="sad">:(</label>
                 <label>Mensaje</label>
                 <input type="textarea" placeholder="por qué es un buen día?" className={showMessage()} name="message" onChange={handleChangeInput}/>
-                <button type="button" onClick={sendData}>Guardar</button>
+                <button type="button" onClick={getSaveData}>Guardar</button>
                 <button>Cancelar</button>
             </form>
             </div>
