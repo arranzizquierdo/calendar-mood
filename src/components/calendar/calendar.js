@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 
 class CalendarMood extends Component {
 
@@ -10,6 +11,9 @@ class CalendarMood extends Component {
         } else {
             return (
                 <div>
+                <Link to="/edit">
+                    <button>+</button>
+                </Link>
                     <ul>
                         {listMood.map((itme, i) => {
                             return (

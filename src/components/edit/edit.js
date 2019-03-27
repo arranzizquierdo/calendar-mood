@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 
 import './edit.scss';
 
@@ -37,8 +38,19 @@ class Edit extends Component {
                 <input type="radio" name="mood" value=":(" onClick={handleMood} onChange={handleChangeInput}/>
                 <label htmlFor="sad">:(</label>
                 <label>Mensaje</label>
-                <input type="textarea" placeholder="por qué es un buen día?" className={showMessage()} name="message" onChange={handleChangeInput}/>
-                <button onClick={handleSubmit} disabled={disableButton()}>Guardar</button>
+                <input 
+                    type="textarea" 
+                    placeholder="por qué es un buen día?" 
+                    className={showMessage()} 
+                    name="message" 
+                    onChange={handleChangeInput}
+                    />
+                    <Link to="/">
+                        <button 
+                    onClick={handleSubmit} 
+                    disabled={disableButton()}>Guardar</button>
+                    </Link>
+                
                 <button>Cancelar</button>
             </form>
             </div>

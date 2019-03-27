@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
 
 import './App.scss';
 import Edit from './components/edit/edit';
@@ -60,17 +61,21 @@ class App extends Component {
   handleSubmit(e) {
     const { date, mood, message, listMood } = this.state;
     let currentDay = {
-        date: date,
-        mood: mood,
-        message: message
+      date: date,
+      mood: mood,
+      message: message
     }
-    
+
     this.setState({
-      listMood: listMood.concat(currentDay)
+      listMood: listMood.concat(currentDay),
+      date: "",
+      mood: "",
+      message: ""
     })
     this.listMood = listMood.push(currentDay);
 
     this.saveLocalSotrage(listMood);
+
   }
 
   saveLocalSotrage(data) {
@@ -78,7 +83,7 @@ class App extends Component {
   }
 
   disableButton() {
-    const { date, mood } = this.state; 
+    const { date, mood } = this.state;
     if (date === "" || mood === "") {
       return "false"
     }
@@ -89,16 +94,31 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Edit
-          handleMood={this.handleMood}
-          showMessage={this.showMessage}
-          handleChangeInput={this.handleChangeInput}
-          handleSubmit={this.handleSubmit}
-          disableButton={this.disableButton}
-        />
-        <CalendarMood 
-          listMood={listMood}
+        <Switch>
+          <Route
+            path="/"
+            exact
+            render={() => (
+              <CalendarMood
+                listMood={listMood}
+              />
+            )}
           />
+          <Route
+            path="/edit"
+            render={() => (
+              <Edit
+                handleMood={this.handleMood}
+                showMessage={this.showMessage}
+                handleChangeInput={this.handleChangeInput}
+                handleSubmit={this.handleSubmit}
+                disableButton={this.disableButton}
+              />
+            )}
+          />
+        </Switch>
+
+
       </div>
     );
   }
