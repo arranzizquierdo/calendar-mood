@@ -17,6 +17,7 @@ class App extends Component {
     this.showMessage = this.showMessage.bind(this);
     this.handleChangeInput = this.handleChangeInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.disableButton = this.disableButton.bind(this)
   }
 
   componentDidMount() {
@@ -43,7 +44,7 @@ class App extends Component {
   showMessage() {
     let moodSelected = "";
     if (this.state.mood === ":(" || this.state.mood === "") {
-      moodSelected = "hidden"
+      moodSelected = "hidden";
     }
     return moodSelected;
   }
@@ -76,7 +77,15 @@ class App extends Component {
     localStorage.setItem('calendarMood', JSON.stringify(data))
   }
 
+  disableButton() {
+    const { date, mood } = this.state; 
+    if (date === "" || mood === "") {
+      return "false"
+    }
+  }
+
   render() {
+    const { listMood } = this.state;
 
     return (
       <div className="App">
@@ -85,8 +94,11 @@ class App extends Component {
           showMessage={this.showMessage}
           handleChangeInput={this.handleChangeInput}
           handleSubmit={this.handleSubmit}
+          disableButton={this.disableButton}
         />
-        <CalendarMood />
+        <CalendarMood 
+          listMood={listMood}
+          />
       </div>
     );
   }
