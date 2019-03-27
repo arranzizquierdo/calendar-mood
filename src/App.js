@@ -2,25 +2,37 @@ import React, { Component } from 'react';
 
 import './App.scss';
 import Edit from './components/edit/edit';
+import CalendarMood from './components/calendar/calendar';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      date: "",
       mood: "",
-      data: 
-        {
-          date: "",
-          mood: "",
-          message: ""
-        }
+      message: "",
+      listMood: []
     }
     this.handleMood = this.handleMood.bind(this);
     this.showMessage = this.showMessage.bind(this);
     this.handleChangeInput = this.handleChangeInput.bind(this);
-    this.getSaveData = this.getSaveData.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    this.getLocalStorage();
+  }
+
+  getLocalStorage() {
+    const dataLocalStorage = localStorage.getItem('calendarMood');
+
+    if (dataLocalStorage) {
+      this.setState({
+        listMood: JSON.parse(dataLocalStorage)
+      })
+    }
+  }
+  //show textare or not
   handleMood(e) {
     let valueMood = e.target.value;
     this.setState({
@@ -35,34 +47,46 @@ class App extends Component {
     }
     return moodSelected;
   }
+  //
 
   handleChangeInput(e) {
     const { value, name } = e.target;
-    this.setState ((prevState) => {
-      return {
-        data: {
-          ...prevState.data,
-          [name]: value
-        }
-      }
+    this.setState({
+      [name]: value
     })
   }
 
-  getSaveData() {
-    const { data } = this.state;
-    localStorage.setItem('data', JSON.stringify(data))
+  handleSubmit(e) {
+    const { date, mood, message, listMood } = this.state;
+    let currentDay = {
+        date: date,
+        mood: mood,
+        message: message
+    }
+    
+    this.setState({
+      listMood: listMood.concat(currentDay)
+    })
+    this.listMood = listMood.push(currentDay);
+
+    this.saveLocalSotrage(listMood);
+  }
+
+  saveLocalSotrage(data) {
+    localStorage.setItem('calendarMood', JSON.stringify(data))
   }
 
   render() {
 
     return (
       <div className="App">
-        <Edit 
-          handleMood={this.handleMood} 
-          showMessage={this.showMessage} 
+        <Edit
+          handleMood={this.handleMood}
+          showMessage={this.showMessage}
           handleChangeInput={this.handleChangeInput}
-          getSaveData={this.getSaveData}
-          />
+          handleSubmit={this.handleSubmit}
+        />
+        <CalendarMood />
       </div>
     );
   }

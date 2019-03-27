@@ -18,7 +18,7 @@ class Edit extends Component {
             handleMood, 
             showMessage, 
             handleChangeInput,
-            getSaveData 
+            handleSubmit 
         } = this.props;
         return ( 
             <div className="edit-container">
@@ -36,7 +36,7 @@ class Edit extends Component {
                 <label htmlFor="sad">:(</label>
                 <label>Mensaje</label>
                 <input type="textarea" placeholder="por qué es un buen día?" className={showMessage()} name="message" onChange={handleChangeInput}/>
-                <button type="button" onClick={getSaveData}>Guardar</button>
+                <button type="button" onClick={handleSubmit}>Guardar</button>
                 <button>Cancelar</button>
             </form>
             </div>
