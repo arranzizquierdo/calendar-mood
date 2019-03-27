@@ -9,6 +9,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentDate: new Date(),
       date: "",
       mood: "",
       message: "",
@@ -20,6 +21,7 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.disableButton = this.disableButton.bind(this)
   }
+
 
   componentDidMount() {
     this.getLocalStorage();

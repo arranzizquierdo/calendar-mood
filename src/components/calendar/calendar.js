@@ -5,7 +5,7 @@ class CalendarMood extends Component {
 
     render() {
         const { listMood } = this.props;
-        console.log(listMood)
+
         if (listMood === null) {
             return <div>cargando</div>
         } else {

@@ -20,9 +20,9 @@ class Edit extends Component {
             showMessage, 
             handleChangeInput,
             handleSubmit,
-            disableButton 
+            disableButton,
         } = this.props;
-        console.log(disableButton())
+
         return ( 
             <div className="edit-container">
             <form action="calendarMood">
