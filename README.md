@@ -1,8 +1,21 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Calendar-Mood
 
-## Available Scripts
+App creada como prueba técnica de Adalab.
+Consiste en una app que permite registrar tu estado de ánimo cada día (almacenandolo en el local storage del navegador). 
 
-In the project directory, you can run:
+Son dos pantallas:
+- Pantalla incial en la que se muestran los días almacenados (ordenados por fecha).
+- Pantalla de edición en la que puedes seleccionar en el formulario día, estado y si es feliz añadir una pequeña explicación.
+
+
+La app ha sido desarrollada con las siguientes tecnologias:
+- HTML5
+- React
+- JavaScript
+- SASS
+
+
+Para poder trabajar con el proyecto sigue estos pasos:
 
 ### `npm start`
 
@@ -12,10 +25,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
