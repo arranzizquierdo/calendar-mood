@@ -23,7 +23,9 @@ class CalendarMood extends Component {
                 </div>
                 {listMood.length === 0
                     ? <h2>Comienza a registrar tus estados de ánimo!</h2>
-                    : <ul className="calendar-list">
+                    : <div>
+                        <p style={{color: "#033b42", background: "#ffffff94", textAlign: "center"}}>si te pones sobre los días felices te dirán porqué fue un día guay</p>
+                    <ul className="calendar-list">
                         {listMood.map((item, i) => {
                             return (
                                 <li key={i} className="calendar-item tooltip">
@@ -35,7 +37,9 @@ class CalendarMood extends Component {
                                 </li>
                             );
                         })}
-                    </ul>}
+                    </ul>
+                    </div>
+                    }
             </div>
         )
     }

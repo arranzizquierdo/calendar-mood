@@ -9,7 +9,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentDate: new Date(),
+      currentDate: new Date().toLocaleDateString(),
       date: "",
       mood: "",
       message: "",
@@ -19,7 +19,9 @@ class App extends Component {
     this.showMessage = this.showMessage.bind(this);
     this.handleChangeInput = this.handleChangeInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.disableButton = this.disableButton.bind(this)
+    this.disableButton = this.disableButton.bind(this);
+    this.chekRepeatDate = this.chekRepeatDate.bind(this);
+    this.orderListMood = this.orderListMood.bind(this);
   }
 
 
@@ -61,7 +63,11 @@ class App extends Component {
   }
 
   handleSubmit(e) {
-    const { date, mood, message, listMood } = this.state;
+    if(this.chekRepeatDate()) {
+      alert('Ya has registrado este día, elige otro ;)')
+      e.preventDefault()
+    } else {
+      const { date, mood, message, listMood } = this.state;
     let currentDay = {
       date: date,
       mood: mood,
@@ -75,9 +81,8 @@ class App extends Component {
       message: ""
     })
     this.listMood = listMood.push(currentDay);
-
     this.saveLocalSotrage(listMood);
-
+    }
   }
 
   saveLocalSotrage(data) {
@@ -91,9 +96,34 @@ class App extends Component {
     }
   }
 
+  chekRepeatDate() {
+    const { listMood, date } = this.state;
+    for ( const item of listMood) {
+      if( date === item.date) {
+        return true
+        // alert('Ya has registrado este día, elige otro ;)')
+      }
+    }
+  }
+
+  orderListMood(listMood) {
+    const orderList = listMood.sort(
+      function(a, b) {
+        if(a.date > b.date) {
+          return 1;
+        } else if (a.date < b.date) {
+          return -1
+        } else {
+          return 0;
+        }
+      }
+    )
+    return orderList
+  }
+
   render() {
     const { listMood } = this.state;
-
+    console.log(this.state.currentDate)
     return (
       <div className="App">
         <Switch>
@@ -102,7 +132,7 @@ class App extends Component {
             exact
             render={() => (
               <CalendarMood
-                listMood={listMood}
+                listMood={this.orderListMood(listMood)}
               />
             )}
           />

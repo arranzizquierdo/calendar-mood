@@ -10,7 +10,7 @@ class Edit extends Component {
             showMessage,
             handleChangeInput,
             handleSubmit,
-            disableButton
+            disableButton,
         } = this.props;
 
         return (
