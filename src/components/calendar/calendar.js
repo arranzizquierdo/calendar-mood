@@ -5,6 +5,13 @@ import './calendar.scss'
 
 class CalendarMood extends Component {
 
+    showTooltip(mood){
+        if(mood === ":)") {
+            return ""
+        } else {
+            return "hidden"
+        }
+    }
     render() {
         const { listMood } = this.props;
 
@@ -18,11 +25,16 @@ class CalendarMood extends Component {
             </div>
             
                 <ul className="calendar-list">
-                    {listMood.map((itme, i) => {
+                    {listMood.map((item, i) => {
                         return (
-                            <li key={i} className="calendar-item">
-                                {itme.mood}
-                                {itme.message}
+                            <li key={i} className="calendar-item tooltip">
+                                {item.mood}
+                                <div className={`${this.showTooltip(item.mood)}`}>
+                                    <span className="tooltiptext">
+                                    {item.message}
+                                </span>
+                                </div>
+                                
                             </li>
                         )
                     })}
