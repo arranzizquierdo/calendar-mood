@@ -2,7 +2,9 @@
   "name": "calendar-mood",
   "version": "0.1.0",
   "private": true,
+  "home": "https://arranzizquierdo.github.io/calendar-mood/",
   "dependencies": {
+    "gh-pages": "^2.0.1",
     "node-sass": "^4.11.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.5",
@@ -12,8 +14,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
+    "predepoly": "npm run build",
+    "deploy": "gh-pages -d build",
+    "build": "react-scripts build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
