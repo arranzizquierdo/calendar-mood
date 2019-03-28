@@ -27,12 +27,14 @@
     display: flex;
 }
 .calendar-item {
+    display: flex;
+    flex-direction: column;
     margin: 20px;
     padding: 20px;
     font-size: 50px;
     background-color: rgba(255, 255, 255, 0.692);
     border: 1px solid #96ccbb;
-    border-radius: 50%;
+    border-radius: 40px;
     cursor: pointer;
 }
 .calendar-item-text {
@@ -63,4 +65,8 @@
   .tooltip:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
+  }
+  .date {
+      font-size: 14px;
+      color: gray;
   }
